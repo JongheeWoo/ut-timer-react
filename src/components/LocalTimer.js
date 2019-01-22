@@ -1,22 +1,8 @@
-// src/App.js
 import React, { Component } from "react";
 import Controls from "./Controls";
 
-class TotalTimer extends Component {
-  render() {
-    return (
-      <div className="">
-        <h1>Total time left</h1>
-        <Stopwatch />
-      </div>
-    );
-  }
-}
-
-// 여기서 컴포넌트 분리
 let s = 0;
-
-class Stopwatch extends Component {
+class LocalTimer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +12,7 @@ class Stopwatch extends Component {
   }
 
   start = () => {
+    console.log("Start Clicked");
     if (this.state.isRunning === false) {
       this.setState({ time: this.state.time, isRunning: true });
       this.timer = setInterval(() => {
@@ -40,8 +27,10 @@ class Stopwatch extends Component {
       this.setState({ isRunning: false });
     }
   };
+
   save = () => {
     console.log(this.state.time);
+    console.log(this.props.time);
   };
 
   reset = () => {
@@ -50,23 +39,24 @@ class Stopwatch extends Component {
   };
 
   render() {
-    const { isRunning } = this.state;
-
     return (
       <div>
-        <p>Total Time: {this.state.time} ms</p>
-        {/* this.state.time을 props로 보내서 다른 컴포넌트로 옮기는 방법? */}
+        <h1>Task 1</h1>
+        <p>This task is to</p>
+        <p>Global Time: {this.props.time}</p>
+        <h2>{this.state.time}</h2>
         <Controls
-          isRunning={isRunning}
+          isRunning={this.state.isRunning}
           start={() => this.start()}
           stop={() => {
             this.stop();
             this.save();
           }}
           reset={() => this.reset()}
-        />
+        />{" "}
       </div>
     );
   }
 }
-export default TotalTimer;
+
+export default LocalTimer;
