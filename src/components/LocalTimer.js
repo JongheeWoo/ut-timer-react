@@ -41,10 +41,12 @@ class LocalTimer extends Component {
   render() {
     return (
       <div>
-        <h1>Task 1</h1>
-        <p>This task is to</p>
-        <p>Global Time: {this.props.time}</p>
-        <h2>{this.state.time}</h2>
+        <div className="localHeader">
+          <h3>Task {this.props.taskNum}</h3>
+          <p>Global Time: {this.props.time}</p>
+        </div>
+        <p>{this.props.taskDescription}</p>
+        <h4>Time: {this.state.time}</h4>
         <Controls
           isRunning={this.state.isRunning}
           start={() => this.start()}

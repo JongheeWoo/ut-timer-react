@@ -5,11 +5,45 @@ import Controls from "./components/Controls";
 import SelectUser from "./components/SelectUser";
 import LocalTimer from "./components/LocalTimer";
 
+const tasks = [
+  {
+    taskNum: "1-1",
+    taskDescription: "홈 위젯 메뉴 변경하기"
+  },
+  {
+    taskNum: "1-2",
+    taskDescription: "홈 위젯 메뉴의 위치 변경하기"
+  },
+  {
+    taskNum: "2",
+    taskDescription: "분할화면에 다른 것이 보이도록 바꿔주세요."
+  },
+  {
+    taskNum: "3",
+    taskDescription: "홈 위젯 메뉴 변경하기"
+  },
+  {
+    taskNum: "4",
+    taskDescription: "계기판 표시 정보"
+  },
+  {
+    taskNum: "5",
+    taskDescription: "홈 위젯 메뉴 변경하기"
+  },
+  {
+    taskNum: "6",
+    taskDescription: "홈 위젯 메뉴 변경하기"
+  }
+];
+
+let ms = 0;
 let s = 0;
+let m = 0;
+x;
 
 class App extends Component {
   state = {
-    time: 0,
+    time: `${m}:${s}:${ms}`,
     isRunning: false
   };
   start = () => {
@@ -17,7 +51,7 @@ class App extends Component {
     if (this.state.isRunning === false) {
       this.setState({ time: this.state.time, isRunning: true });
       this.timer = setInterval(() => {
-        this.setState({ time: s++ });
+        this.setState({ time: ms++ });
       }, 100);
     }
   };
@@ -55,7 +89,12 @@ class App extends Component {
           />
         </div>
         <div className="LocalTimer">
-          <LocalTimer time={this.state.time} />
+          {tasks.map(localtimer => (
+            <LocalTimer
+              taskNum={localtimer.taskNum}
+              taskDescription={localtimer.taskDescription}
+            />
+          ))}
         </div>
       </div>
     );

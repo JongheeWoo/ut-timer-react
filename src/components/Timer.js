@@ -31,7 +31,6 @@ const Timer = (time, isRunning, start, stop, save, reset) => {
   return (
     <div>
       <p>Total Time: {this.state.time} ms</p>
-      {/* this.state.time을 props로 보내서 다른 컴포넌트로 옮기는 방법? */}
 
       <Controls
         isRunning={isRunning}
