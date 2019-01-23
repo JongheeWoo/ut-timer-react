@@ -7,6 +7,7 @@ class LocalTimer extends Component {
     super(props);
     this.state = {
       time: 0,
+      gtime: 0,
       isRunning: false
     };
   }
@@ -25,12 +26,12 @@ class LocalTimer extends Component {
     if (this.state.isRunning === true) {
       clearInterval(this.timer);
       this.setState({ isRunning: false });
+      console.log(this.state.time);
     }
   };
 
   save = () => {
-    console.log(this.state.time);
-    console.log(this.props.time);
+    this.setState({ gtime: this.props.time });
   };
 
   reset = () => {
@@ -40,22 +41,29 @@ class LocalTimer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="">
         <div className="localHeader">
           <h3>Task {this.props.taskNum}</h3>
-          <p>Global Time: {this.props.time}</p>
+          <p className="GlobalTimeNum"> {this.state.gtime} </p>
         </div>
-        <p>{this.props.taskDescription}</p>
-        <h4>Time: {this.state.time}</h4>
-        <Controls
-          isRunning={this.state.isRunning}
-          start={() => this.start()}
-          stop={() => {
-            this.stop();
-            this.save();
-          }}
-          reset={() => this.reset()}
-        />{" "}
+        <div className="localBody">
+          <p>{this.props.taskDescription}</p>
+          <h4 className="LocalTimeNum">{this.state.time} ms</h4>
+        </div>
+        <div className="LocalControl">
+          <Controls
+            isRunning={this.state.isRunning}
+            start={() => {
+              this.reset();
+              this.start();
+              this.save();
+            }}
+            stop={() => {
+              this.stop();
+            }}
+            reset={() => this.reset()}
+          />
+        </div>
       </div>
     );
   }

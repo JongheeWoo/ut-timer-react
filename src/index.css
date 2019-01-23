@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  background: #4c5165;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -11,4 +12,108 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+button {
+  all: unset;
+  padding: 5px 10px;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  margin: 5px;
+  cursor: pointer;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+h3 {
+  all: unset;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h4 {
+  all: unset;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+p {
+  all: unset;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2e3041;
+  padding: 5px 20px;
+  box-shadow: 0 4px 8px 0 rgba(46, 48, 65, 0.5);
+}
+
+.GlobalTime {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #4c5165;
+  padding: 15px 20px;
+  border: 1px solid #4c5165;
+}
+
+.LocalTimer {
+  background: #2e3041;
+  margin: 10px;
+  padding: 10px 20px;
+}
+
+.localHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.localBody {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.LocalTimeNum {
+  background: #1d8ae6;
+  line-height: 24px;
+  width: 100px;
+  height: 25px;
+  border-radius: 12.5px;
+}
+
+.LocalControl {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 0px 20px 0px;
+  border-bottom: 1px solid #4c5165;
+}
+
+.Controls_Start:hover {
+  background: #1d8ae6;
+  border: 1px solid #1d8ae6;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Controls_Stop {
+  background: #d74355;
+  border: 1px solid #d74355;
+}
+.Conrols_Reset {
+  border: 1px solid #bcbec5;
+  color: #bcbec5;
 }

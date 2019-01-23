@@ -36,21 +36,20 @@ const tasks = [
   }
 ];
 
-let ms = 0;
 let s = 0;
-let m = 0;
 
 class App extends Component {
   state = {
-    time: `${m}:${s}:${ms}`,
+    time: 0,
     isRunning: false
   };
+
   start = () => {
     console.log("Start Clicked");
     if (this.state.isRunning === false) {
       this.setState({ time: this.state.time, isRunning: true });
       this.timer = setInterval(() => {
-        this.setState({ time: ms++ });
+        this.setState({ time: s++ });
       }, 100);
     }
   };
@@ -74,8 +73,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="">
-          AVN UT TIMER
+        <header className="Header">
+          <h1>AVN UT TIMER</h1>
           <SelectUser />
         </header>
         <div className="GlobalTime">
@@ -90,6 +89,7 @@ class App extends Component {
         <div className="LocalTimer">
           {tasks.map(localtimer => (
             <LocalTimer
+              time={this.state.time}
               taskNum={localtimer.taskNum}
               taskDescription={localtimer.taskDescription}
             />
