@@ -7,30 +7,37 @@ import LocalTimer from "./components/LocalTimer";
 
 const tasks = [
   {
+    idx: 1,
     taskNum: "1-1",
     taskDescription: "홈 위젯 메뉴 변경하기"
   },
   {
+    idx: 2,
     taskNum: "1-2",
     taskDescription: "홈 위젯 메뉴의 위치 변경하기"
   },
   {
+    idx: 3,
     taskNum: "2",
     taskDescription: "분할화면에 다른 것이 보이도록 바꿔주세요."
   },
   {
+    idx: 4,
     taskNum: "3",
     taskDescription: "홈 위젯 메뉴 변경하기"
   },
   {
+    idx: 5,
     taskNum: "4",
     taskDescription: "계기판 표시 정보"
   },
   {
+    idx: 6,
     taskNum: "5",
     taskDescription: "홈 위젯 메뉴 변경하기"
   },
   {
+    idx: 7,
     taskNum: "6",
     taskDescription: "홈 위젯 메뉴 변경하기"
   }
@@ -86,12 +93,13 @@ class App extends Component {
             reset={() => this.reset()}
           />
         </div>
-        <div className="LocalTimer">
+        <div>
           {tasks.map(localtimer => (
             <LocalTimer
               time={this.state.time}
               taskNum={localtimer.taskNum}
               taskDescription={localtimer.taskDescription}
+              key={localtimer.idx}
             />
           ))}
         </div>

@@ -56,7 +56,8 @@ p {
   align-items: center;
   background: #2e3041;
   padding: 5px 20px;
-  box-shadow: 0 4px 8px 0 rgba(46, 48, 65, 0.5);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  z-index: 9;
 }
 
 .GlobalTime {
@@ -70,8 +71,9 @@ p {
 
 .LocalTimer {
   background: #2e3041;
-  margin: 10px;
-  padding: 10px 20px;
+  margin: 20px 15px;
+  padding: 5px 20px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .localHeader {
@@ -100,7 +102,6 @@ p {
   display: flex;
   justify-content: flex-end;
   padding: 15px 0px 20px 0px;
-  border-bottom: 1px solid #4c5165;
 }
 
 .Controls_Start:hover {

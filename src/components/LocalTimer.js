@@ -41,7 +41,7 @@ class LocalTimer extends Component {
 
   render() {
     return (
-      <div className="">
+      <div className="LocalTimer">
         <div className="localHeader">
           <h3>Task {this.props.taskNum}</h3>
           <p className="GlobalTimeNum"> {this.state.gtime} </p>
