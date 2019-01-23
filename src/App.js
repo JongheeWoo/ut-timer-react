@@ -39,7 +39,6 @@ const tasks = [
 let ms = 0;
 let s = 0;
 let m = 0;
-x;
 
 class App extends Component {
   state = {
