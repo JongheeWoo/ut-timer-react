@@ -82,6 +82,9 @@ const tasks_car_b = [
   }
 ];
 
+const formattedSeconds = sec =>
+  Math.floor(sec / 60) + ":" + ("0" + (sec % 60)).slice(-2);
+
 let s = 0;
 
 class App extends Component {
@@ -96,7 +99,7 @@ class App extends Component {
       this.setState({ time: this.state.time, isRunning: true });
       this.timer = setInterval(() => {
         this.setState({ time: s++ });
-      }, 100);
+      }, 1000);
     }
   };
 
@@ -126,7 +129,7 @@ class App extends Component {
         <Tabs>
           <div label="KIA K900">
             <div className="GlobalTime">
-              <GlobalTimeView time={this.state.time} />
+              <GlobalTimeView time={formattedSeconds(this.state.time)} />
               <div className="GlobalControl">
                 <Controls
                   isRunning={this.state.isRunning}
@@ -148,19 +151,22 @@ class App extends Component {
               ))}
             </div>
           </div>
+
           <div label="BMW 7 Series">
             <div className="GlobalTime">
-              <GlobalTimeView time={this.state.time} />
-              <Controls
-                isRunning={this.state.isRunning}
-                start={() => this.start()}
-                stop={() => this.stop()}
-                reset={() => this.reset()}
-              />
+              <GlobalTimeView time={formattedSeconds(this.state.time)} />
+              <div className="GlobalControl">
+                <Controls
+                  isRunning={this.state.isRunning}
+                  start={() => this.start()}
+                  stop={() => this.stop()}
+                  reset={() => this.reset()}
+                />
+              </div>
             </div>
 
             <div>
-              {tasks_car_b.map(localtimer => (
+              {tasks_car_a.map(localtimer => (
                 <LocalTimer
                   time={this.state.time}
                   taskNum={localtimer.taskNum}

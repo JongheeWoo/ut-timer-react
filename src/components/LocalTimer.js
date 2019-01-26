@@ -7,7 +7,7 @@ class LocalTimer extends Component {
     super(props);
     this.state = {
       time: 0,
-      gtime: 0,
+      gtime: "",
       isRunning: false
     };
   }
@@ -18,7 +18,7 @@ class LocalTimer extends Component {
       this.setState({ time: this.state.time, isRunning: true });
       this.timer = setInterval(() => {
         this.setState({ time: s++ });
-      }, 100);
+      }, 1000);
     }
   };
 
@@ -35,7 +35,7 @@ class LocalTimer extends Component {
   };
 
   reset = () => {
-    this.setState({ time: 0, isRunning: false });
+    this.setState({ time: 0, isRunning: false, gtime: "" });
     s = 0;
   };
 
