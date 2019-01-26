@@ -4,11 +4,50 @@ import GlobalTimeView from "./components/GlobalTimeView";
 import Controls from "./components/Controls";
 import SelectUser from "./components/SelectUser";
 import LocalTimer from "./components/LocalTimer";
+import Tabs from "./Tabs";
 
-const tasks = [
+const tasks_car_a = [
   {
     idx: 1,
     taskNum: "1-1",
+    taskDescription: "홈 위젯 메뉴 변경하기"
+  },
+  {
+    idx: 2,
+    taskNum: "1-2",
+    taskDescription: "홈 위젯 메뉴의 위치 변경하기"
+  },
+  {
+    idx: 3,
+    taskNum: "2",
+    taskDescription: "분할화면에 다른 것이 보이도록 바꿔주세요."
+  },
+  {
+    idx: 4,
+    taskNum: "3",
+    taskDescription: "홈 위젯 메뉴 변경하기"
+  },
+  {
+    idx: 5,
+    taskNum: "4",
+    taskDescription: "계기판 표시 정보"
+  },
+  {
+    idx: 6,
+    taskNum: "5",
+    taskDescription: "홈 위젯 메뉴 변경하기"
+  },
+  {
+    idx: 7,
+    taskNum: "6",
+    taskDescription: "홈 위젯 메뉴 변경하기"
+  }
+];
+
+const tasks_car_b = [
+  {
+    idx: 1,
+    taskNum: "7 Series 1-1",
     taskDescription: "홈 위젯 메뉴 변경하기"
   },
   {
@@ -84,25 +123,54 @@ class App extends Component {
           <h1>AVN UT TIMER</h1>
           <SelectUser />
         </header>
-        <div className="GlobalTime">
-          <GlobalTimeView time={this.state.time} />
-          <Controls
-            isRunning={this.state.isRunning}
-            start={() => this.start()}
-            stop={() => this.stop()}
-            reset={() => this.reset()}
-          />
-        </div>
-        <div>
-          {tasks.map(localtimer => (
-            <LocalTimer
-              time={this.state.time}
-              taskNum={localtimer.taskNum}
-              taskDescription={localtimer.taskDescription}
-              key={localtimer.idx}
-            />
-          ))}
-        </div>
+        <Tabs>
+          <div label="KIA K900">
+            <div className="GlobalTime">
+              <GlobalTimeView time={this.state.time} />
+              <div className="GlobalControl">
+                <Controls
+                  isRunning={this.state.isRunning}
+                  start={() => this.start()}
+                  stop={() => this.stop()}
+                  reset={() => this.reset()}
+                />
+              </div>
+            </div>
+
+            <div>
+              {tasks_car_a.map(localtimer => (
+                <LocalTimer
+                  time={this.state.time}
+                  taskNum={localtimer.taskNum}
+                  taskDescription={localtimer.taskDescription}
+                  key={localtimer.idx}
+                />
+              ))}
+            </div>
+          </div>
+          <div label="BMW 7 Series">
+            <div className="GlobalTime">
+              <GlobalTimeView time={this.state.time} />
+              <Controls
+                isRunning={this.state.isRunning}
+                start={() => this.start()}
+                stop={() => this.stop()}
+                reset={() => this.reset()}
+              />
+            </div>
+
+            <div>
+              {tasks_car_b.map(localtimer => (
+                <LocalTimer
+                  time={this.state.time}
+                  taskNum={localtimer.taskNum}
+                  taskDescription={localtimer.taskDescription}
+                  key={localtimer.idx}
+                />
+              ))}
+            </div>
+          </div>
+        </Tabs>
       </div>
     );
   }

@@ -44,11 +44,17 @@ class LocalTimer extends Component {
       <div className="LocalTimer">
         <div className="localHeader">
           <h3>Task {this.props.taskNum}</h3>
+
           <p className="GlobalTimeNum"> {this.state.gtime} </p>
         </div>
         <div className="localBody">
           <p>{this.props.taskDescription}</p>
-          <h4 className="LocalTimeNum">{this.state.time} ms</h4>
+
+          {this.state.isRunning ? (
+            <h4 className="LocalRunning">{this.state.time}</h4>
+          ) : (
+            <h4 className="LocalStop">{this.state.time}</h4>
+          )}
         </div>
         <div className="LocalControl">
           <Controls

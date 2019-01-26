@@ -4,7 +4,7 @@ class Controls extends Component {
   render() {
     const { isRunning, start, stop, reset } = this.props;
     return (
-      <div>
+      <div className="Control_Btns">
         {!isRunning ? (
           <button onClick={start} className="Controls_Start">
             Start
