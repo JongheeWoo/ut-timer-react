@@ -88,9 +88,19 @@ const formattedSeconds = sec =>
 let s = 0;
 
 class App extends Component {
+  id = 0;
+
   state = {
     time: 0,
-    isRunning: false
+    isRunning: false,
+    records: []
+  };
+
+  updateData = data => {
+    this.setState({
+      records: this.state.records.concat({ ...data, id: this.id++ })
+    });
+    console.log(data);
   };
 
   start = () => {
@@ -143,6 +153,7 @@ class App extends Component {
             <div>
               {tasks_car_a.map(localtimer => (
                 <LocalTimer
+                  onUpdate={this.updateData}
                   time={this.state.time}
                   taskNum={localtimer.taskNum}
                   taskDescription={localtimer.taskDescription}
@@ -177,6 +188,7 @@ class App extends Component {
             </div>
           </div>
         </Tabs>
+        {JSON.stringify(this.state.records)}
       </div>
     );
   }

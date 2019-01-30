@@ -12,13 +12,21 @@ class LocalTimer extends Component {
     };
   }
 
+  dataSubmit = () => {
+    this.props.onUpdate({
+      taskNum: this.props.taskNum,
+      localTime: this.state.time,
+      globalTime: this.state.gtime
+    });
+  };
+
   start = () => {
     console.log("Start Clicked");
     if (this.state.isRunning === false) {
       this.setState({ time: this.state.time, isRunning: true });
       this.timer = setInterval(() => {
         this.setState({ time: s++ });
-      }, 1000);
+      }, 100);
     }
   };
 
@@ -66,6 +74,7 @@ class LocalTimer extends Component {
             }}
             stop={() => {
               this.stop();
+              this.dataSubmit();
             }}
             reset={() => this.reset()}
           />
