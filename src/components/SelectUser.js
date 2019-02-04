@@ -1,20 +1,37 @@
 import React, { Component } from "react";
 
 class SelectUser extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "0" };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit(event) {
+    console.log(`Sel-user: ${this.state.value}`);
+    event.preventDefault();
+    this.props.onCreate({
+      userNo: this.state.value
+    });
+  }
+
   render() {
     return (
-      <div>
-        <select>
-          <option>Select User</option>
+      <form onSubmit={this.handleSubmit}>
+        <select value={this.state.value} onChange={this.handleChange}>
+          <option value="0">Select User</option>
           <option value="1">User 1</option>
           <option value="2">User 2</option>
           <option value="3">User 3</option>
-          <option value="4">User 4</option>
-          <option value="5">User 5</option>
-          <option value="6">User 6</option>
-          <option value="7">User 7</option>
         </select>
-      </div>
+
+        <input type="submit" value="Apply" />
+      </form>
     );
   }
 }

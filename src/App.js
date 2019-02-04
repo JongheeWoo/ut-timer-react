@@ -5,6 +5,7 @@ import Controls from "./components/Controls";
 import SelectUser from "./components/SelectUser";
 import LocalTimer from "./components/LocalTimer";
 import Tabs from "./Tabs";
+import LoginBtn from "./components/LoginBtn";
 
 const tasks_car_a = [
   {
@@ -93,10 +94,37 @@ class App extends Component {
   state = {
     time: 0,
     isRunning: false,
-    records: []
+    records: [],
+    userNo: ""
   };
 
-  updateData = data => {
+  updateUser = data => {
+    this.setState({
+      userNo: data
+    });
+    console.log(`App: ${this.state.userNo}`);
+  };
+
+  updateData = (data, index) => {
+    var values = [
+      ["" + data.taskNum, "" + data.localTime, "" + data.globalTime]
+    ];
+    var body = {
+      values: values
+    };
+    console.log(values);
+    window.gapi.client.sheets.spreadsheets.values
+      .update({
+        spreadsheetId: "1Xm5Hw8sOPM7RshP4aaG738mcdKIHG4AMbOyWBtgCd_0",
+        range: "Class Data!A" + index + ":C" + index,
+        valueInputOption: "RAW",
+        resource: body
+      })
+      .then(response => {
+        console.log(response);
+        var result = response.result;
+        console.log(`${result.updatedCells} cells updated.`);
+      });
     this.setState({
       records: this.state.records.concat({ ...data, id: this.id++ })
     });
@@ -129,12 +157,45 @@ class App extends Component {
     s = 0;
   };
 
+  listMajors = () => {
+    window.gapi.client.sheets.spreadsheets.values
+      .get({
+        spreadsheetId: "1Xm5Hw8sOPM7RshP4aaG738mcdKIHG4AMbOyWBtgCd_0",
+        range: "Class Data!A2:E"
+      })
+      .then(
+        response => {
+          var range = response.result;
+          console.log(range);
+          let result = [];
+          if (range.values.length > 0) {
+            result = ["Task, Lcoal, Global:"];
+
+            for (let i = 0; i < range.values.length; i++) {
+              var row = range.values[i];
+              result = [...result, row[0] + ", " + row[4]];
+            }
+          } else {
+            result = [...result, "No data found."];
+          }
+          console.log(result);
+          this.setState({
+            records: result
+          });
+        },
+        response => {
+          // NOTHING
+        }
+      );
+  };
+
   render() {
     return (
       <div className="App">
         <header className="Header">
           <h1>AVN UT TIMER</h1>
-          <SelectUser />
+          <LoginBtn />
+          <SelectUser updateUser={this.updateUser} />
         </header>
         <Tabs>
           <div label="KIA K900">
@@ -157,6 +218,7 @@ class App extends Component {
                   time={this.state.time}
                   taskNum={localtimer.taskNum}
                   taskDescription={localtimer.taskDescription}
+                  index={localtimer.idx}
                   key={localtimer.idx}
                 />
               ))}
@@ -188,6 +250,7 @@ class App extends Component {
             </div>
           </div>
         </Tabs>
+        <button onClick={this.listMajors}>load</button>
         {JSON.stringify(this.state.records)}
       </div>
     );

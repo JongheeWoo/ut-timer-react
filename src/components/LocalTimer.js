@@ -7,17 +7,19 @@ class LocalTimer extends Component {
     super(props);
     this.state = {
       time: 0,
-      gtime: "",
-      isRunning: false
+      gtime: ""
     };
   }
 
   dataSubmit = () => {
-    this.props.onUpdate({
-      taskNum: this.props.taskNum,
-      localTime: this.state.time,
-      globalTime: this.state.gtime
-    });
+    this.props.onUpdate(
+      {
+        taskNum: this.props.taskNum,
+        localTime: this.state.time,
+        globalTime: this.state.gtime
+      },
+      this.props.index
+    );
   };
 
   start = () => {
