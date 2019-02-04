@@ -95,7 +95,8 @@ class App extends Component {
     time: 0,
     isRunning: false,
     records: [],
-    userNo: ""
+    userNo: "",
+    carType: ""
   };
 
   updateUser = data => {
@@ -121,7 +122,8 @@ class App extends Component {
     window.gapi.client.sheets.spreadsheets.values
       .update({
         spreadsheetId: "1Xm5Hw8sOPM7RshP4aaG738mcdKIHG4AMbOyWBtgCd_0",
-        range: "Class Data!A" + index + ":D" + index,
+        // range: "User One!A" + index + ":D" + index,
+        range: `${this.state.userNo}!A${index}:D${index}`,
         valueInputOption: "RAW",
         resource: body
       })
@@ -223,6 +225,7 @@ class App extends Component {
               {tasks_car_a.map(localtimer => (
                 <LocalTimer
                   user={this.state.userNo}
+                  car={this.state.carType}
                   onUpdate={this.updateData}
                   time={this.state.time}
                   taskNum={localtimer.taskNum}

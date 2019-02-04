@@ -15,6 +15,7 @@ class LocalTimer extends Component {
     this.props.onUpdate(
       {
         user: this.props.user,
+        carType: this.props.car,
         taskNum: this.props.taskNum,
         localTime: this.state.time,
         globalTime: this.state.gtime

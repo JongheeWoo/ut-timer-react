@@ -23,9 +23,9 @@ class SelectUser extends Component {
       <form onSubmit={this.handleSubmit}>
         <select value={this.state.value} onChange={this.handleChange}>
           <option value="0">Select User</option>
-          <option value="1">User 1</option>
-          <option value="2">User 2</option>
-          <option value="3">User 3</option>
+          <option value="User 1">User 1</option>
+          <option value="User 2">User 2</option>
+          <option value="User 3">User 3</option>
         </select>
 
         <input type="submit" value="Apply" />
