@@ -14,6 +14,7 @@ class LocalTimer extends Component {
   dataSubmit = () => {
     this.props.onUpdate(
       {
+        user: this.props.user,
         taskNum: this.props.taskNum,
         localTime: this.state.time,
         globalTime: this.state.gtime

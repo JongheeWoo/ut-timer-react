@@ -102,12 +102,17 @@ class App extends Component {
     this.setState({
       userNo: data
     });
-    console.log(`App: ${this.state.userNo}`);
+    console.log(`parent after: ${this.state.userNo}`);
   };
 
   updateData = (data, index) => {
     var values = [
-      ["" + data.taskNum, "" + data.localTime, "" + data.globalTime]
+      [
+        "" + data.user,
+        "" + data.taskNum,
+        "" + data.localTime,
+        "" + data.globalTime
+      ]
     ];
     var body = {
       values: values
@@ -116,7 +121,7 @@ class App extends Component {
     window.gapi.client.sheets.spreadsheets.values
       .update({
         spreadsheetId: "1Xm5Hw8sOPM7RshP4aaG738mcdKIHG4AMbOyWBtgCd_0",
-        range: "Class Data!A" + index + ":C" + index,
+        range: "Class Data!A" + index + ":D" + index,
         valueInputOption: "RAW",
         resource: body
       })
@@ -195,8 +200,11 @@ class App extends Component {
         <header className="Header">
           <h1>AVN UT TIMER</h1>
           <LoginBtn />
-          <SelectUser updateUser={this.updateUser} />
         </header>
+        <div className="select-user">
+          <SelectUser onCreate={this.updateUser} />
+          <div>User NO: {this.state.userNo} .</div>
+        </div>
         <Tabs>
           <div label="KIA K900">
             <div className="GlobalTime">
@@ -214,6 +222,7 @@ class App extends Component {
             <div>
               {tasks_car_a.map(localtimer => (
                 <LocalTimer
+                  user={this.state.userNo}
                   onUpdate={this.updateData}
                   time={this.state.time}
                   taskNum={localtimer.taskNum}
@@ -241,6 +250,7 @@ class App extends Component {
             <div>
               {tasks_car_a.map(localtimer => (
                 <LocalTimer
+                  user={this.state.userNo}
                   time={this.state.time}
                   taskNum={localtimer.taskNum}
                   taskDescription={localtimer.taskDescription}

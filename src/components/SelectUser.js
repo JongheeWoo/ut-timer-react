@@ -13,11 +13,9 @@ class SelectUser extends Component {
   }
 
   handleSubmit(event) {
-    console.log(`Sel-user: ${this.state.value}`);
     event.preventDefault();
-    this.props.onCreate({
-      userNo: this.state.value
-    });
+    this.props.onCreate(this.state.value);
+    console.log(this.state.value);
   }
 
   render() {
