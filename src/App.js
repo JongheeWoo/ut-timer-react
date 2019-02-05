@@ -96,7 +96,7 @@ class App extends Component {
     isRunning: false,
     records: [],
     userNo: "",
-    carType: ""
+    carType: "KIA K900"
   };
 
   updateUser = data => {
@@ -106,10 +106,18 @@ class App extends Component {
     console.log(`parent after: ${this.state.userNo}`);
   };
 
+  updateCarType = data => {
+    this.setState({
+      carType: data
+    });
+    console.log(`parent type: ${data}`);
+  };
+
   updateData = (data, index) => {
     var values = [
       [
         "" + data.user,
+        "" + data.carType,
         "" + data.taskNum,
         "" + data.localTime,
         "" + data.globalTime
@@ -123,7 +131,7 @@ class App extends Component {
       .update({
         spreadsheetId: "1Xm5Hw8sOPM7RshP4aaG738mcdKIHG4AMbOyWBtgCd_0",
         // range: "User One!A" + index + ":D" + index,
-        range: `${this.state.userNo}!A${index}:D${index}`,
+        range: `${this.state.userNo}!A${index}:E${index}`,
         valueInputOption: "RAW",
         resource: body
       })
@@ -205,9 +213,11 @@ class App extends Component {
         </header>
         <div className="select-user">
           <SelectUser onCreate={this.updateUser} />
-          <div>User NO: {this.state.userNo} .</div>
+          <div>
+            User NO: {this.state.userNo} / Car Type: {this.state.carType}
+          </div>
         </div>
-        <Tabs>
+        <Tabs onUpdate={this.updateCarType}>
           <div label="KIA K900">
             <div className="GlobalTime">
               <GlobalTimeView time={formattedSeconds(this.state.time)} />

@@ -8,7 +8,6 @@ class Tab extends Component {
 
   render() {
     const {
-      onClick,
       props: { activeTab, label }
     } = this;
 
@@ -19,7 +18,12 @@ class Tab extends Component {
     }
 
     return (
-      <li className={className} onClick={onClick}>
+      <li
+        className={className}
+        onClick={() => {
+          this.onClick();
+        }}
+      >
         {label}
       </li>
     );
