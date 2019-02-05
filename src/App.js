@@ -7,7 +7,7 @@ import LocalTimer from "./components/LocalTimer";
 import Tabs from "./Tabs";
 import LoginBtn from "./components/LoginBtn";
 
-const tasks_car_a = [
+const taskCarA = [
   {
     idx: 1,
     taskNum: "1-1",
@@ -45,7 +45,7 @@ const tasks_car_a = [
   }
 ];
 
-const tasks_car_b = [
+const taskCarB = [
   {
     idx: 1,
     taskNum: "7 Series 1-1",
@@ -84,18 +84,23 @@ const tasks_car_b = [
 ];
 
 const formattedSeconds = sec =>
-  Math.floor(sec / 60) + ":" + ("0" + (sec % 60)).slice(-2);
+  ("0" + Math.floor(sec / 60)).slice(-2) + ":" + ("0" + (sec % 60)).slice(-2);
 
 let s = 0;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.child = React.createRef();
+  }
+
   id = 0;
 
   state = {
     time: 0,
     isRunning: false,
     records: [],
-    userNo: "",
+    userNo: "User Not Selected",
     carType: "KIA K900"
   };
 
@@ -169,6 +174,7 @@ class App extends Component {
 
   reset = () => {
     this.setState({ time: 0, isRunning: false });
+    console.log("Global Reset");
     s = 0;
   };
 
@@ -208,15 +214,19 @@ class App extends Component {
     return (
       <div className="App">
         <header className="Header">
-          <h1>AVN UT TIMER</h1>
-          <LoginBtn />
-        </header>
-        <div className="select-user">
-          <SelectUser onCreate={this.updateUser} />
-          <div>
-            User NO: {this.state.userNo} / Car Type: {this.state.carType}
+          <div className="HeaderTop">
+            <h1>AVN UT TIMER</h1>
+            <LoginBtn />
           </div>
-        </div>
+          <div className="testMetaInfo">
+            <div>
+              {this.state.userNo} | {this.state.carType}
+            </div>
+            <div className="select-user">
+              <SelectUser onCreate={this.updateUser} />
+            </div>
+          </div>
+        </header>
         <Tabs onUpdate={this.updateCarType}>
           <div label="KIA K900">
             <div className="GlobalTime">
@@ -232,8 +242,9 @@ class App extends Component {
             </div>
 
             <div>
-              {tasks_car_a.map(localtimer => (
+              {taskCarA.map(localtimer => (
                 <LocalTimer
+                  ref={this.child}
                   user={this.state.userNo}
                   car={this.state.carType}
                   onUpdate={this.updateData}
@@ -246,7 +257,6 @@ class App extends Component {
               ))}
             </div>
           </div>
-
           <div label="BMW 7 Series">
             <div className="GlobalTime">
               <GlobalTimeView time={formattedSeconds(this.state.time)} />
@@ -261,12 +271,16 @@ class App extends Component {
             </div>
 
             <div>
-              {tasks_car_a.map(localtimer => (
+              {taskCarB.map(localtimer => (
                 <LocalTimer
+                  ref={this.child}
                   user={this.state.userNo}
+                  car={this.state.carType}
+                  onUpdate={this.updateData}
                   time={this.state.time}
                   taskNum={localtimer.taskNum}
                   taskDescription={localtimer.taskDescription}
+                  index={localtimer.idx}
                   key={localtimer.idx}
                 />
               ))}

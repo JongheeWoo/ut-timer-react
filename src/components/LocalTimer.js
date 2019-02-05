@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Controls from "./Controls";
 
 let s = 0;
+
+const formattedSeconds = sec =>
+  ("0" + Math.floor(sec / 60)).slice(-2) + ":" + ("0" + (sec % 60)).slice(-2);
+
 class LocalTimer extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +22,7 @@ class LocalTimer extends Component {
         carType: this.props.car,
         taskNum: this.props.taskNum,
         localTime: this.state.time,
-        globalTime: this.state.gtime
+        globalTime: formattedSeconds(this.state.gtime)
       },
       this.props.index
     );
@@ -29,7 +33,7 @@ class LocalTimer extends Component {
     if (this.state.isRunning === false) {
       this.setState({ time: this.state.time, isRunning: true });
       this.timer = setInterval(() => {
-        this.setState({ time: s++ });
+        this.setState({ time: (s = s + 0.1).toFixed(1) });
       }, 100);
     }
   };
@@ -47,17 +51,18 @@ class LocalTimer extends Component {
   };
 
   reset = () => {
-    this.setState({ time: 0, isRunning: false, gtime: "" });
-    s = 0;
+    this.setState({ time: 0.0, isRunning: false, gtime: "" });
+    s = 0.1;
   };
-
   render() {
     return (
       <div className="LocalTimer">
         <div className="localHeader">
           <h3>Task {this.props.taskNum}</h3>
 
-          <p className="GlobalTimeNum"> {this.state.gtime} </p>
+          <p className="GlobalTimeNum">
+            Started at: {formattedSeconds(this.state.gtime)}
+          </p>
         </div>
         <div className="localBody">
           <p>{this.props.taskDescription}</p>

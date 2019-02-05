@@ -29,7 +29,7 @@ h1 {
 
 h3 {
   all: unset;
-  color: #ffffff;
+  color: #ffffff !important;
   font-size: 18px;
   font-weight: 600;
 }
@@ -50,12 +50,31 @@ p {
 
 .Header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* align-items: center; */
   background: #2e3041;
   padding: 5px 20px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
   z-index: 9;
+  border-bottom: 1px solid #4c5165;
+}
+
+.HeaderTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+
+.testMetaInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+  justify-content: space-between;
+  color: #4c5165;
 }
 
 .GlobalTime {

@@ -4,7 +4,7 @@ class LoginBtn extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleAuthClick}>인증따리인증따</button>
+        <button onClick={this.handleAuthClick}>Login</button>
       </div>
     );
   }
