@@ -56,16 +56,36 @@ class LocalTimer extends Component {
   };
   render() {
     return (
-      <div className="LocalTimer">
+      <div
+        className={
+          !this.state.isRunning && this.state.time !== 0
+            ? "LocalTimerDone"
+            : "LocalTimer"
+        }
+      >
         <div className="localHeader">
           <h3>Task {this.props.taskNum}</h3>
 
-          <p className="GlobalTimeNum">
+          <p
+            className={
+              !this.state.isRunning && this.state.time !== 0
+                ? "localBodyDone"
+                : ""
+            }
+          >
             Started at: {formattedSeconds(this.state.gtime)}
           </p>
         </div>
         <div className="localBody">
-          <p>{this.props.taskDescription}</p>
+          <p
+            className={
+              !this.state.isRunning && this.state.time !== 0
+                ? "localBodyDone"
+                : ""
+            }
+          >
+            {this.props.taskDescription}
+          </p>
 
           {this.state.isRunning ? (
             <h4 className="LocalRunning">{this.state.time}</h4>

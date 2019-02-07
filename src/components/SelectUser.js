@@ -17,15 +17,21 @@ class SelectUser extends Component {
     this.props.onCreate(this.state.value);
     console.log(this.state.value);
   }
+  BuildOptions() {
+    var arr = [];
+    for (let i = 1; i <= 24; i++) {
+      arr.push(<option key={i} value={`User ${i}`}>{`User ${i}`}</option>);
+    }
+    return arr;
+  }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <select value={this.state.value} onChange={this.handleChange}>
-          <option value="0">Select User</option>
-          <option value="User 1">User 1</option>
-          <option value="User 2">User 2</option>
-          <option value="User 3">User 3</option>
+          <option value="No User Selected">Select User</option>
+          <option value="Test">Test</option>
+          {this.BuildOptions()}
         </select>
 
         <input type="submit" value="Apply" />

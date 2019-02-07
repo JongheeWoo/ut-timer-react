@@ -11,75 +11,123 @@ const taskCarA = [
   {
     idx: 1,
     taskNum: "1-1",
-    taskDescription: "홈 위젯 메뉴 변경하기"
+    taskDescription:
+      "홈화면 위젯 설정을 바꿔보세요. “공조” 대신에 다른 위젯 정보로 변경해 주세요."
   },
   {
     idx: 2,
     taskNum: "1-2",
-    taskDescription: "홈 위젯 메뉴의 위치 변경하기"
+    taskDescription: "가운데 위젯과 오른쪽 위젯의 위치를 바꿔주세요."
   },
   {
     idx: 3,
     taskNum: "2",
-    taskDescription: "분할화면에 다른 것이 보이도록 바꿔주세요."
+    taskDescription: "분할화면의 뷰를 “지도”로 바꿔 주세요."
   },
   {
     idx: 4,
     taskNum: "3",
-    taskDescription: "홈 위젯 메뉴 변경하기"
+    taskDescription:
+      "사용자 버튼을 누르면 “폰 프로젝션” 메뉴가 바로 켜지도록 설정해 주세요. "
   },
   {
     idx: 5,
-    taskNum: "4",
-    taskDescription: "계기판 표시 정보"
+    taskNum: "4-1",
+    taskDescription:
+      "계기판에 표시되는 정보들 중에 “기어 변속 알림”도 보이게 해 주세요."
   },
   {
     idx: 6,
-    taskNum: "5",
-    taskDescription: "홈 위젯 메뉴 변경하기"
+    taskNum: "4-2",
+    taskDescription: "운전석 시트의 온도가 자동으로 맞춰지도록 설정해 주세요."
   },
   {
     idx: 7,
+    taskNum: "4-3",
+    taskDescription: "충돌 경고로 레벨을 바꿔주세요."
+  },
+  {
+    idx: 8,
+    taskNum: "5",
+    taskDescription: "제공된 폰을 블루투스로 연결해주세요."
+  },
+  {
+    idx: 9,
     taskNum: "6",
-    taskDescription: "홈 위젯 메뉴 변경하기"
+    taskDescription:
+      "뒷좌석의 바람이 아래에서 나오도록 설정해 주시고, 온도는 “19도”로 맞춰주세요."
+  },
+  {
+    idx: 10,
+    taskNum: "7",
+    taskDescription: "“차로 이탈 방지” 경고음을 줄여주세요."
+  },
+  {
+    idx: 11,
+    taskNum: "8",
+    taskDescription: "“뒤에서 조작을 할 수 없도록 기능을 잠궈주세요."
   }
 ];
 
 const taskCarB = [
   {
-    idx: 1,
-    taskNum: "7 Series 1-1",
-    taskDescription: "홈 위젯 메뉴 변경하기"
+    idx: 12,
+    taskNum: "1-1",
+    taskDescription:
+      "홈화면 위젯 설정을 바꿔보세요. “공조” 대신에 “운행 정보”로 변경해 주세요."
   },
   {
-    idx: 2,
+    idx: 13,
     taskNum: "1-2",
-    taskDescription: "홈 위젯 메뉴의 위치 변경하기"
+    taskDescription: "가운데 위젯과 오른쪽 위젯의 위치를 바꿔주세요."
   },
   {
-    idx: 3,
+    idx: 14,
     taskNum: "2",
-    taskDescription: "분할화면에 다른 것이 보이도록 바꿔주세요."
+    taskDescription: "분할화면의 뷰를 “지도”로 바꿔 주세요."
   },
   {
-    idx: 4,
+    idx: 15,
     taskNum: "3",
-    taskDescription: "홈 위젯 메뉴 변경하기"
+    taskDescription:
+      "사용자 버튼을 누르면 “폰 프로젝션” 메뉴가 바로 켜지도록 설정해 주세요. "
   },
   {
-    idx: 5,
-    taskNum: "4",
-    taskDescription: "계기판 표시 정보"
+    idx: 16,
+    taskNum: "4-1",
+    taskDescription:
+      "계기판에 표시되는 정보들 중에 “기어 변속 알림”도 보이게 해 주세요."
   },
   {
-    idx: 6,
+    idx: 17,
+    taskNum: "4-2",
+    taskDescription: "운전석 시트의 온도가 자동으로 맞춰지도록 설정해 주세요."
+  },
+  {
+    idx: 18,
+    taskNum: "4-3",
+    taskDescription: "충돌 경고로 레벨을 바꿔주세요."
+  },
+  {
+    idx: 19,
     taskNum: "5",
-    taskDescription: "홈 위젯 메뉴 변경하기"
+    taskDescription: "제공된 폰을 블루투스로 연결해주세요."
   },
   {
-    idx: 7,
+    idx: 20,
     taskNum: "6",
-    taskDescription: "홈 위젯 메뉴 변경하기"
+    taskDescription:
+      "뒷좌석의 바람이 아래에서 나오도록 설정해 주시고, 온도는 “19도”로 맞춰주세요."
+  },
+  {
+    idx: 21,
+    taskNum: "7",
+    taskDescription: "“차로 이탈 방지” 경고음을 줄여주세요."
+  },
+  {
+    idx: 22,
+    taskNum: "8",
+    taskDescription: "뒤에서 조작을 할 수 없도록 기능을 잠궈주세요."
   }
 ];
 
@@ -87,6 +135,8 @@ const formattedSeconds = sec =>
   ("0" + Math.floor(sec / 60)).slice(-2) + ":" + ("0" + (sec % 60)).slice(-2);
 
 let s = 0;
+
+const IS_USER_SELECTED = "No User Selected";
 
 class App extends Component {
   constructor(props) {
@@ -100,7 +150,7 @@ class App extends Component {
     time: 0,
     isRunning: false,
     records: [],
-    userNo: "User Not Selected",
+    userNo: IS_USER_SELECTED,
     carType: "KIA K900"
   };
 
@@ -173,9 +223,14 @@ class App extends Component {
   };
 
   reset = () => {
-    this.setState({ time: 0, isRunning: false });
-    console.log("Global Reset");
-    s = 0;
+    if (this.state.isRunning === true) {
+      this.stop();
+      this.setState({ time: 0, isRunning: false });
+      s = 0;
+    } else if (this.state.isRunning === false) {
+      this.setState({ time: 0 });
+      s = 0;
+    }
   };
 
   listMajors = () => {
@@ -215,12 +270,21 @@ class App extends Component {
       <div className="App">
         <header className="Header">
           <div className="HeaderTop">
-            <h1>AVN UT TIMER</h1>
+            <h1>⏱ AVN UT TIMER</h1>
             <LoginBtn />
           </div>
           <div className="testMetaInfo">
             <div>
-              {this.state.userNo} | {this.state.carType}
+              <p
+                className={
+                  this.state.userNo === IS_USER_SELECTED
+                    ? "userInfoNotSelected"
+                    : "userInfoSelected"
+                }
+              >
+                {this.state.userNo}{" "}
+              </p>
+              | {this.state.carType}
             </div>
             <div className="select-user">
               <SelectUser onCreate={this.updateUser} />
@@ -287,7 +351,6 @@ class App extends Component {
             </div>
           </div>
         </Tabs>
-        <button onClick={this.listMajors}>load</button>
         {JSON.stringify(this.state.records)}
       </div>
     );

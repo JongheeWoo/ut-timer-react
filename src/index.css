@@ -91,11 +91,29 @@ p {
 .GlobalControl button {
   margin-left: 10px;
 }
+
+.userInfoNotSelected {
+  color: #d74355;
+  font-weight: 800;
+}
+
+.userInfoSelected {
+  color: #bcbec5;
+}
+
 .LocalTimer {
   background: #2e3041;
   margin: 20px 15px;
   padding-top: 20px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.LocalTimerDone {
+  background: #454a5d;
+  color: #575c6d;
+  margin: 20px 15px;
+  padding-top: 20px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
 .localHeader {
@@ -112,6 +130,10 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.localBodyDone {
+  color: #575c6d;
 }
 
 .LocalRunning {
