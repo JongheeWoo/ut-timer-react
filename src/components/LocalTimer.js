@@ -33,10 +33,18 @@ class LocalTimer extends Component {
     if (this.state.isRunning === false) {
       this.setState({ time: this.state.time, isRunning: true });
       this.timer = setInterval(() => {
-        this.setState({ time: (s = s + 0.1).toFixed(1) });
+      this.setState({ time: (s = s + 0.1) });
       }, 100);
     }
   };
+
+restart = () => {
+  let rs = Number(this.state.time)
+  this.setState({ time: this.state.time, isRunning: true });
+    this.timer = setInterval(() => {
+    this.setState({ time: (rs = rs + 0.1)})
+  }, 100);
+}  
 
   stop = () => {
     if (this.state.isRunning === true) {
@@ -88,11 +96,13 @@ class LocalTimer extends Component {
           </p>
 
           {this.state.isRunning ? (
-            <h4 className="LocalRunning">{this.state.time}</h4>
+            <h4 className="LocalRunning">{Number(this.state.time).toFixed(1)}</h4>
           ) : (
-            <h4 className="LocalStop">{this.state.time}</h4>
+            <h4 className="LocalStop">{Number(this.state.time).toFixed(1)}</h4>
           )}
+          <button onClick={this.restart}>restart</button>  
         </div>
+
         <div className="LocalControl">
           <Controls
             isRunning={this.state.isRunning}
