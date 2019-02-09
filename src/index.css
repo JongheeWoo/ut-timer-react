@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: #4c5165;
+  background: #121212;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -15,199 +15,40 @@ code {
 }
 
 button {
-  all: unset;
   color: #ffffff;
-  padding: 8px 0;
-  cursor: pointer;
 }
 
 h1 {
+  font-size: 32px;
+  font-weight: bold;
   color: #ffffff;
-  font-size: 22px;
-  font-weight: 600;
+}
+
+h2 {
+  all: unset;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
 }
 
 h3 {
   all: unset;
-  color: #ffffff !important;
+  color: #fff;
   font-size: 18px;
   font-weight: 600;
 }
 
 h4 {
   all: unset;
-  color: #fff !important;
+  color: #fff;
   font-size: 16px;
   font-weight: 600;
 }
 
 p {
   all: unset;
-  color: #fff !important;
+  color: #fff;
   font-size: 16px;
+  line-height: 1.2;
   font-weight: 400;
-}
-
-.Header {
-  display: flex;
-  flex-direction: column;
-  /* justify-content: space-between; */
-  /* align-items: center; */
-  background: #2e3041;
-  padding: 5px 20px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-  z-index: 9;
-  border-bottom: 1px solid #4c5165;
-}
-
-.HeaderTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 100%;
-}
-
-.testMetaInfo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 5px;
-  justify-content: space-between;
-  color: #4c5165;
-}
-
-.GlobalTime {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #4c5165;
-  padding: 15px 20px;
-  border: 1px solid #4c5165;
-}
-.GlobalControl {
-  padding-right: 25px;
-}
-.GlobalControl button {
-  margin-left: 10px;
-}
-
-.userInfoNotSelected {
-  color: #d74355 !important;
-  font-weight: 800;
-}
-
-.userInfoSelected {
-  color: #bcbec5;
-}
-
-.LocalTimer {
-  background: #2e3041;
-  margin: 20px 15px;
-  padding-top: 20px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-.LocalTimerDone {
-  background: #454a5d;
-  color: #575c6d;
-  margin: 20px 15px;
-  padding-top: 20px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-}
-
-.localHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
-}
-
-.localBody {
-  margin-top: 10px;
-  text-align: left;
-  padding: 0 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.localBodyDone {
-  color: #575c6d !important;
-}
-
-.LocalRunning {
-  background: #1d8ae6;
-  text-align: center;
-  line-height: 24px;
-  margin-left: 10px;
-  width: 100px;
-  height: 25px;
-  border-radius: 12.5px;
-}
-.LocalStop {
-  background: #4c5165;
-  text-align: center;
-  line-height: 24px;
-  margin-left: 10px;
-  width: 100px;
-  height: 25px;
-  border-radius: 12.5px;
-}
-
-.LocalControl {
-  display: flex;
-  justify-content: flex-end;
-  padding: 30px 0px 0px 0px;
-}
-.Control_Btns {
-  display: flex;
-  width: 100%;
-}
-
-.Controls_Start {
-  width: 90%;
-  border-top: 1px solid #4c5165;
-}
-
-.Controls_Start:hover {
-  background: #1d8ae6;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-.Controls_Stop {
-  width: 90%;
-  border-top: 1px solid #4c5165;
-  background: #d74355;
-}
-.Conrols_Reset {
-  width: 20%;
-  color: #bcbec5;
-  background: #4c5165;
-}
-
-.tab-list {
-  padding-left: 0;
-  width: 100%;
-  display: flex;
-  background: #2e3041;
-  margin: 0 auto;
-  cursor: pointer;
-}
-
-.tab-list li {
-  color: #4c5165;
-  font-weight: 600;
-}
-
-.tab-list-item {
-  display: flex;
-  flex-direction: row;
-  padding: 10px 10px;
-  width: 50%;
-}
-
-.tab-list-active {
-  background-color: #1d8ae6;
-  color: white !important;
 }

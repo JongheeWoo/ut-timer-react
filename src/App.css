@@ -1,32 +1,60 @@
 .App {
   text-align: center;
+  color: white;
+  margin: 2% 5%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Header {
+  height: 157px;
   display: flex;
   flex-direction: column;
+}
+
+.HeaderTop {
+  display: flex;
+  height: 58px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.TestMetaInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  color: #9b9b9b;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Global Timer */
+.GlobalTime {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: space-between; */
+  margin-top: 35px;
+}
+
+.GlobalTimeView {
+  display: flex;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.GlobalControl {
+  width: 100%;
+}
+
+.userInfoNotSelected {
+  color: #d74355 !important;
+  font-weight: 800;
+}
+
+.userInfoSelected {
+  color: #9b9b9b;
 }

@@ -1,0 +1,81 @@
+.LongBtn {
+  all: unset;
+  width: 100%;
+  height: 48px;
+  border-radius: 2px;
+  background-color: #2d3ce3;
+}
+
+.ResetBtnGlobal {
+  all: unset;
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  background-color: #232323;
+  background-image: url(./Resources/Reset.svg);
+  background-repeat: no-repeat, repeat;
+  background-size: 18px;
+  background-position: center;
+}
+
+/* LOCAL TIMER BUTTONS */
+.ResetBtnLocal {
+  all: unset;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  background-color: #121212;
+  background-image: url(./Resources/Reset.svg);
+  background-repeat: no-repeat, repeat;
+  background-size: 18px;
+  background-position: center;
+  margin: 20px 10px;
+}
+
+/* LOCAL BUTTON GENERAL */
+.LocalControl {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 0px 0px 0px;
+}
+
+.Controls {
+  display: flex;
+  width: 100%;
+}
+
+.LocalBtn {
+  color: #fff;
+  width: 70%;
+  margin: 0px 10px 10px 10px;
+}
+
+/* SAVE BUTTON */
+.SaveBtn {
+  width: 30%;
+  background-color: #19a15f;
+  margin: 0px 10px 10px 0px;
+}
+
+.SaveBtnDisabled {
+  color: #84a093 !important;
+  background-color: #0a4227;
+}
+
+.SaveBtnSaved {
+  box-sizing: border-box;
+  border: 3px solid #19a15f;
+  color: #19a15f;
+  background: transparent;
+}
+
+/* LOCAL START BUTTON */
+.Stop {
+  background: #d64356;
+}
+
+/* LOGIN BUTTON */
+
+.LoginBtn {
+  all: unset;
+}

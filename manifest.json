@@ -1,0 +1,9 @@
+{
+  "short_name": "UT Timer",
+  "name": "UT Timer",
+  "display": "standalone",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192" },
+    { "src": "icons/icon-512.png", "sizes": "512x512" }
+  ]
+}

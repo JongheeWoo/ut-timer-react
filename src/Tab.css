@@ -1,0 +1,35 @@
+
+.tabs {
+    margin-top: 30px;
+  }
+  
+  .tab-list {
+    padding-left: 0;
+    display: flex;
+  
+    margin: 0 auto;
+    cursor: pointer;
+  }
+  
+  .tab-list li {
+    height: 21px;
+    font-size: 18px;
+  
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  .tab-list-item {
+    display: flex;
+    flex-direction: row;
+  }
+  .tab-list-item:first-child {
+    margin-right: 30px;
+  }
+  
+  .tab-list-active {
+    color: white !important;
+    font-weight: bold;
+    border-bottom: 7px solid #2d3ce3;
+  }
+  

@@ -6,12 +6,14 @@ import SelectUser from "./components/SelectUser";
 import LocalTimer from "./components/LocalTimer";
 import Tabs from "./Tabs";
 import LoginBtn from "./components/LoginBtn";
-
+import "./Tab.css";
+import "./Buttons.css";
 const taskCarA = [
   {
     idx: 1,
     taskNum: "1-1",
-    taskDescription: "홈화면 위젯 설정을 바꿔보세요. “공조” 대신에 다른 위젯 정보로 변경해 주세요."
+    taskDescription:
+      "홈화면 위젯 설정을 바꿔보세요. “공조” 대신에 다른 위젯 정보로 변경해 주세요."
   },
   {
     idx: 2,
@@ -26,12 +28,14 @@ const taskCarA = [
   {
     idx: 4,
     taskNum: "3",
-    taskDescription: "사용자 버튼을 누르면 “폰 프로젝션” 메뉴가 바로 켜지도록 설정해 주세요. "
+    taskDescription:
+      "사용자 버튼을 누르면 “폰 프로젝션” 메뉴가 바로 켜지도록 설정해 주세요. "
   },
   {
     idx: 5,
     taskNum: "4-1",
-    taskDescription: "계기판에 표시되는 정보들 중에 “기어 변속 알림”도 보이게 해 주세요."
+    taskDescription:
+      "계기판에 표시되는 정보들 중에 “기어 변속 알림”도 보이게 해 주세요."
   },
   {
     idx: 6,
@@ -51,7 +55,8 @@ const taskCarA = [
   {
     idx: 9,
     taskNum: "6",
-    taskDescription: "뒷좌석의 바람이 아래에서 나오도록 설정해 주시고, 온도는 “19도”로 맞춰주세요."
+    taskDescription:
+      "뒷좌석의 바람이 아래에서 나오도록 설정해 주시고, 온도는 “19도”로 맞춰주세요."
   },
   {
     idx: 10,
@@ -62,14 +67,15 @@ const taskCarA = [
     idx: 11,
     taskNum: "8",
     taskDescription: "“뒤에서 조작을 할 수 없도록 기능을 잠궈주세요."
-  },
+  }
 ];
 
 const taskCarB = [
   {
     idx: 12,
     taskNum: "1-1",
-    taskDescription: "홈화면 위젯 설정을 바꿔보세요. “공조” 대신에 “운행 정보”로 변경해 주세요."
+    taskDescription:
+      "홈화면 위젯 설정을 바꿔보세요. “공조” 대신에 “운행 정보”로 변경해 주세요."
   },
   {
     idx: 13,
@@ -84,12 +90,14 @@ const taskCarB = [
   {
     idx: 15,
     taskNum: "3",
-    taskDescription: "사용자 버튼을 누르면 “폰 프로젝션” 메뉴가 바로 켜지도록 설정해 주세요. "
+    taskDescription:
+      "사용자 버튼을 누르면 “폰 프로젝션” 메뉴가 바로 켜지도록 설정해 주세요. "
   },
   {
     idx: 16,
     taskNum: "4-1",
-    taskDescription: "계기판에 표시되는 정보들 중에 “기어 변속 알림”도 보이게 해 주세요."
+    taskDescription:
+      "계기판에 표시되는 정보들 중에 “기어 변속 알림”도 보이게 해 주세요."
   },
   {
     idx: 17,
@@ -109,7 +117,8 @@ const taskCarB = [
   {
     idx: 20,
     taskNum: "6",
-    taskDescription: "뒷좌석의 바람이 아래에서 나오도록 설정해 주시고, 온도는 “19도”로 맞춰주세요."
+    taskDescription:
+      "뒷좌석의 바람이 아래에서 나오도록 설정해 주시고, 온도는 “19도”로 맞춰주세요."
   },
   {
     idx: 21,
@@ -120,14 +129,14 @@ const taskCarB = [
     idx: 22,
     taskNum: "8",
     taskDescription: "뒤에서 조작을 할 수 없도록 기능을 잠궈주세요."
-  },
+  }
 ];
 
 const formattedSeconds = sec =>
   ("0" + Math.floor(sec / 60)).slice(-2) + ":" + ("0" + (sec % 60)).slice(-2);
 
 let s = 0;
-
+const IS_USER_SELECTED = "No User Selected";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -140,7 +149,7 @@ class App extends Component {
     time: 0,
     isRunning: false,
     records: [],
-    userNo: "User Not Selected",
+    userNo: "No User Selected",
     carType: "KIA K900"
   };
 
@@ -213,6 +222,7 @@ class App extends Component {
   };
 
   reset = () => {
+    this.stop();
     this.setState({ time: 0, isRunning: false });
     console.log("Global Reset");
     s = 0;
@@ -255,29 +265,53 @@ class App extends Component {
       <div className="App">
         <header className="Header">
           <div className="HeaderTop">
-            <h1>AVN UT TIMER</h1>
+            <h2>UT Timer</h2>
             <LoginBtn />
           </div>
-          <div className="testMetaInfo">
+
+          <div className="TestMetaInfo">
             <div>
-              {this.state.userNo} | {this.state.carType}
-            </div>
-            <div className="select-user">
-              <SelectUser onCreate={this.updateUser} />
+              <p
+                className={
+                  this.state.userNo === IS_USER_SELECTED
+                    ? "userInfoNotSelected"
+                    : "userInfoSelected"
+                }
+              >
+                {this.state.userNo}{" "}
+              </p>
+              | {this.state.carType}
             </div>
           </div>
+          <div className="UserSelectSection">
+            <SelectUser onCreate={this.updateUser} />
+          </div>
         </header>
+
         <Tabs onUpdate={this.updateCarType}>
           <div label="KIA K900">
             <div className="GlobalTime">
-              <GlobalTimeView time={formattedSeconds(this.state.time)} />
+              <div className="GlobalTimeView">
+                <GlobalTimeView time={formattedSeconds(this.state.time)} />
+                <button className="ResetBtnGlobal" onClick={this.reset} />
+              </div>
+
               <div className="GlobalControl">
-                <Controls
-                  isRunning={this.state.isRunning}
-                  start={() => this.start()}
-                  stop={() => this.stop()}
-                  reset={() => this.reset()}
-                />
+                {!this.state.isRunning && this.state.time === 0 ? (
+                  <button onClick={this.start} className="LongBtn">
+                    Start
+                  </button>
+                ) : null}
+                {!this.state.isRunning && this.state.time !== 0 ? (
+                  <button onClick={this.start} className="LongBtn">
+                    Resume
+                  </button>
+                ) : null}
+                {this.state.isRunning ? (
+                  <button onClick={this.stop} className="LongBtn Stop">
+                    Pause
+                  </button>
+                ) : null}
               </div>
             </div>
 
@@ -327,12 +361,11 @@ class App extends Component {
             </div>
           </div>
         </Tabs>
-        <button onClick={this.listMajors}>load</button>
-        {JSON.stringify(this.state.records)}
+        {/* <button onClick={this.listMajors}>load</button> */}
+        {/* {JSON.stringify(this.state.records)} */}
       </div>
     );
   }
 }
 
 export default App;
-

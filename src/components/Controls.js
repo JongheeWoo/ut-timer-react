@@ -1,23 +1,56 @@
 import React, { Component } from "react";
+import "./Controls.css";
+import "../Buttons.css";
 
 class Controls extends Component {
   render() {
-    const { isRunning, start, stop, reset } = this.props;
+    const { isRunning, isSaved, start, restart, stop, time, save } = this.props;
+
+    var saveBtn;
+    if (!isRunning && time === 0) {
+      saveBtn = (
+        <button className="LongBtn LocalBtn SaveBtn SaveBtnDisabled">
+          Save
+        </button>
+      );
+    } else if (!isSaved && time !== 0) {
+      saveBtn = (
+        <button
+          onClick={save}
+          className="LongBtn LocalBtn SaveBtn SaveBtnDefault"
+        >
+          Save
+        </button>
+      );
+    } else if (isSaved && time !== 0) {
+      saveBtn = (
+        <button
+          onClick={save}
+          className="LongBtn LocalBtn SaveBtn SaveBtnSaved"
+        >
+          Saved!
+        </button>
+      );
+    }
+
     return (
-      <div className="Control_Btns">
-        {!isRunning ? (
-          <button onClick={start} className="Controls_Start">
+      <div className="Controls">
+        {!isRunning && time === 0 ? (
+          <button onClick={start} className="LongBtn LocalBtn">
             Start
           </button>
         ) : null}
-        {isRunning ? (
-          <button onClick={stop} className="Controls_Stop">
-            Stop
+        {!isRunning && time !== 0 ? (
+          <button onClick={restart} className="LongBtn LocalBtn">
+            Resume
           </button>
         ) : null}
-        <button onClick={reset} className="Conrols_Reset">
-          Reset
-        </button>
+        {isRunning ? (
+          <button onClick={stop} className="LongBtn LocalBtn Stop">
+            Pause
+          </button>
+        ) : null}
+        {saveBtn}
       </div>
     );
   }

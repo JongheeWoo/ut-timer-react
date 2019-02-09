@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Controls from "./Controls";
+import "./LocalTimer.css";
 
 let s = 0;
 
@@ -11,7 +12,9 @@ class LocalTimer extends Component {
     super(props);
     this.state = {
       time: 0,
-      gtime: ""
+      gtime: "",
+      isRunning: false,
+      isSaved: false
     };
   }
 
@@ -31,20 +34,24 @@ class LocalTimer extends Component {
   start = () => {
     console.log("Start Clicked");
     if (this.state.isRunning === false) {
-      this.setState({ time: this.state.time, isRunning: true });
+      this.setState({
+        gtime: this.props.time,
+        time: this.state.time,
+        isRunning: true
+      });
       this.timer = setInterval(() => {
-      this.setState({ time: (s = s + 0.1) });
+        this.setState({ time: (s = s + 0.1) });
       }, 100);
     }
   };
 
-restart = () => {
-  let rs = Number(this.state.time)
-  this.setState({ time: this.state.time, isRunning: true });
+  restart = () => {
+    let rs = Number(this.state.time);
+    this.setState({ time: this.state.time, isRunning: true, isSaved: false });
     this.timer = setInterval(() => {
-    this.setState({ time: (rs = rs + 0.1)})
-  }, 100);
-}  
+      this.setState({ time: (rs = rs + 0.1) });
+    }, 100);
+  };
 
   stop = () => {
     if (this.state.isRunning === true) {
@@ -55,67 +62,59 @@ restart = () => {
   };
 
   save = () => {
-    this.setState({ gtime: this.props.time });
+    this.setState({ isSaved: true });
   };
 
   reset = () => {
-    this.setState({ time: 0.0, isRunning: false, gtime: "" });
+    this.stop();
+    this.setState({ time: 0.0, isRunning: false, isSaved: false, gtime: "" });
     s = 0.1;
   };
   render() {
     return (
       <div
         className={
-          !this.state.isRunning && this.state.time !== 0
+          !this.state.isRunning && this.state.time !== 0 && this.state.isSaved
             ? "LocalTimerDone"
             : "LocalTimer"
         }
       >
-        <div className="localHeader">
-          <h3>Task {this.props.taskNum}</h3>
-
-          <p
-            className={
-              !this.state.isRunning && this.state.time !== 0
-                ? "localBodyDone"
-                : ""
-            }
-          >
-            Started at: {formattedSeconds(this.state.gtime)}
-          </p>
+        <div className="LocalTimerHeader">
+          <div className="LocalTimerTitle">
+            <h2>Task {this.props.taskNum}</h2>
+            <p className="GlobalTimeAtLocal">
+              {formattedSeconds(this.state.gtime)}
+            </p>
+          </div>
+          <button className="ResetBtnLocal" onClick={this.reset} />
         </div>
-        <div className="localBody">
-          <p
-            className={
-              !this.state.isRunning && this.state.time !== 0
-                ? "localBodyDone"
-                : ""
-            }
-          >
-            {this.props.taskDescription}
-          </p>
-
-          {this.state.isRunning ? (
-            <h4 className="LocalRunning">{Number(this.state.time).toFixed(1)}</h4>
-          ) : (
-            <h4 className="LocalStop">{Number(this.state.time).toFixed(1)}</h4>
-          )}
-          <button onClick={this.restart}>restart</button>  
+        <div className="LocalTimerDescription">
+          <p>{this.props.taskDescription}</p>
         </div>
+        <h1>{Number(this.state.time).toFixed(1)}</h1>
 
         <div className="LocalControl">
           <Controls
             isRunning={this.state.isRunning}
+            isSaved={this.state.isSaved}
+            time={this.state.time}
+            restart={() => this.restart()}
             start={() => {
               this.reset();
               this.start();
-              this.save();
             }}
             stop={() => {
               this.stop();
+            }}
+            save={() => {
+              this.stop();
+              this.save();
               this.dataSubmit();
             }}
-            reset={() => this.reset()}
+            reset={() => {
+              this.stop();
+              this.reset();
+            }}
           />
         </div>
       </div>

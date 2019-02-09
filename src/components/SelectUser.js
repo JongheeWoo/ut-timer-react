@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./SelectUser.css";
 
 class SelectUser extends Component {
   constructor(props) {
@@ -27,14 +28,18 @@ class SelectUser extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <select value={this.state.value} onChange={this.handleChange}>
+      <form className="UserSelectForm" onSubmit={this.handleSubmit}>
+        <select
+          className="UserSelectBox LightGrayBg"
+          value={this.state.value}
+          onChange={this.handleChange}
+        >
           <option value="No User Selected">Select User</option>
           <option value="Test">Test</option>
           {this.BuildOptions()}
         </select>
 
-        <input type="submit" value="Apply" />
+        <input className="SelectBoxSubmitBtn" type="submit" value="Apply" />
       </form>
     );
   }
