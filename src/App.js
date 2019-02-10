@@ -263,6 +263,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div id="initClient" />
         <header className="Header">
           <div className="HeaderTop">
             <h2>UT Timer</h2>

@@ -4,7 +4,9 @@ class LoginBtn extends Component {
   render() {
     return (
       <div>
-        <button className="LoginBtn" onClick={this.handleAuthClick}>Login</button>
+        <button className="LoginBtn" onClick={this.handleAuthClick}>
+          Login
+        </button>
       </div>
     );
   }

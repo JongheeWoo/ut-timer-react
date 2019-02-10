@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Google Sheets API Quickstart</title>
     <meta charset="utf-8" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="manifest.webmanifest" />
@@ -124,6 +123,7 @@
           .then(
             function(response) {
               var range = response.result;
+
               if (range.values.length > 0) {
                 appendPre("Name, Major:");
                 for (i = 0; i < range.values.length; i++) {
