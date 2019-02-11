@@ -70,14 +70,20 @@
 
       function updateSigninStatus(isSignedIn) {
         if (isSignedIn) {
-          window.alert("로그인되었습니다.");
+          document.getElementById("loginbtn").innerHTML = "Autorized"
           return;
         } else {
           window.alert("로그인이 필요합니다.");
+          document.getElementById("loginbtn").innerHTML = "Login"
         }
       }
+      
     </script>
-    <div id="root"></div>
+    <div id="root">
+      <script>document.getElementById("loginbtn").innerHTML("HE")</script>
+      
+
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
